@@ -14,10 +14,10 @@ class MainActivity : AppCompatActivity() {
 
     private val numbers = ArrayList<Int>()
     private val list = ArrayList<Int>()
-    lateinit var adapter: RecyclerMainAdapter
+    private lateinit var adapter: RecyclerMainAdapter
     private val numbersTicket = java.util.ArrayList<Int>()
-    val randomGenerator = Random()
-    lateinit var array: Array<Int>
+    private val randomGeneratorTicket = Random()
+    private lateinit var array: Array<Int>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,16 +86,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getArray15() {
-        when(randomGenerator.nextInt(4)){
-            1->array = arrayOf(1,3,5,7,11,12,16,18,20,22,24,26)
-            2->array = arrayOf(0,4,5,6,10,11,12,16,17,18,23,25)
-            else->array = arrayOf(0,2,7,8,9,12,13,17,20,21,22,25)
+        array = when (randomGeneratorTicket.nextInt(4)) {
+            1 -> arrayOf(1, 3, 5, 7, 11, 12, 16, 18, 20, 22, 24, 26)
+            2 -> arrayOf(0, 4, 5, 6, 10, 11, 12, 16, 17, 18, 23, 25)
+            else -> arrayOf(0, 2, 7, 8, 9, 12, 13, 17, 20, 21, 22, 25)
 
         }
     }
+
     //Removes 12 numbersTicket from the list of 27
     private fun generateFifteen() {
-        for (i in 0 until 11){
+        for (i in 0 until 11) {
             numbersTicket[array[i]] = 0
         }
     }
@@ -110,7 +111,7 @@ class MainActivity : AppCompatActivity() {
     //for ticket number generator
     private fun randomNmberGenerator(randomMin: Int, randomMax: Int) {
         if (numbersTicket.size < 27) {
-            val random = randomGenerator.nextInt(randomMax - randomMin+1) + randomMin
+            val random = randomGeneratorTicket.nextInt(randomMax - randomMin + 1) + randomMin
             if (!numbersTicket.contains(random)) {
                 numbersTicket.add(random)
             } else {
